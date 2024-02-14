@@ -9,8 +9,8 @@
  # 2  La herramienta XXX
  ## 2.1  Historia
  ## 2.2  Funciones/utilidades y características. Ventajas y desventajas
-Inciga: Una plataforma para la gestión electrónica de la administración pública
-Inciga es una plataforma que permite a las administraciones públicas gestionar de forma electrónica los expedientes administrativos, la tramitación de procedimientos, la comunicación con los ciudadanos, la firma electrónica y el pago electrónico.
+Icinga: Una plataforma para la gestión electrónica de la administración pública
+Icinga es una plataforma que permite a las administraciones públicas gestionar de forma electrónica los expedientes administrativos, la tramitación de procedimientos, la comunicación con los ciudadanos, la firma electrónica y el pago electrónico.
 
 - Funciones:
 
@@ -44,23 +44,23 @@ Inciga es una plataforma que permite a las administraciones públicas gestionar 
   - Coste de implementación: Puede ser costosa para las administraciones.
   - Necesidad de formación: Los usuarios necesitan formación para usarla.
   - Riesgo de brecha digital: Puede aumentar la brecha entre los ciudadanos con y sin acceso a internet.
-En general, Inciga es una plataforma que ofrece muchas ventajas para la administración pública y los ciudadanos. Sin embargo, es importante tener en cuenta las desventajas antes de su implementación.
+En general, Icinga es una plataforma que ofrece muchas ventajas para la administración pública y los ciudadanos. Sin embargo, es importante tener en cuenta las desventajas antes de su implementación.
  ## 2.3  Plataformas posibles donde instalar  requisitos (agentes y máquinas desde las que se monitoriza).
-Para instalar Inciga y cumplir con los requisitos necesarios para la monitorización de agentes y máquinas, hay varias plataformas y sistemas operativos a considerar:
+Para instalar Icinga y cumplir con los requisitos necesarios para la monitorización de agentes y máquinas, hay varias plataformas y sistemas operativos a considerar:
 
-Linux (Ubuntu, CentOS, Red Hat, Debian, etc.): Inciga es compatible con varias distribuciones de Linux. Puedes instalar los agentes de Inciga en máquinas que ejecuten cualquiera de estas distribuciones Linux para monitorizar su rendimiento y estado.
+Linux (Ubuntu, CentOS, Red Hat, Debian, etc.): Icinga es compatible con varias distribuciones de Linux. Puedes instalar los agentes de Icinga en máquinas que ejecuten cualquiera de estas distribuciones Linux para monitorizar su rendimiento y estado.
 
-Windows Server: Inciga también es compatible con entornos Windows Server. Puedes instalar agentes de Inciga en servidores que utilicen sistemas operativos Windows para monitorizar su rendimiento y salud.
+Windows Server: Icinga también es compatible con entornos Windows Server. Puedes instalar agentes de Icinga en servidores que utilicen sistemas operativos Windows para monitorizar su rendimiento y salud.
 
-Cloud Platforms (AWS, Azure, Google Cloud Platform): Puedes instalar agentes de Inciga en instancias virtuales en la nube en plataformas como AWS (Amazon Web Services), Azure o Google Cloud Platform para monitorizar el rendimiento de tus recursos en la nube.
+Cloud Platforms (AWS, Azure, Google Cloud Platform): Puedes instalar agentes de Icinga en instancias virtuales en la nube en plataformas como AWS (Amazon Web Services), Azure o Google Cloud Platform para monitorizar el rendimiento de tus recursos en la nube.
 
-Contenedores (Docker): Inciga puede ejecutarse dentro de contenedores Docker, lo que permite una implementación fácil y portabilidad en diferentes entornos.
+Contenedores (Docker): Icinga puede ejecutarse dentro de contenedores Docker, lo que permite una implementación fácil y portabilidad en diferentes entornos.
 
-Entornos virtualizados (VMware, VirtualBox, Hyper-V): Si estás utilizando entornos virtualizados, puedes instalar agentes de Inciga en las máquinas virtuales para monitorizar su rendimiento y salud.
+Entornos virtualizados (VMware, VirtualBox, Hyper-V): Si estás utilizando entornos virtualizados, puedes instalar agentes de Icinga en las máquinas virtuales para monitorizar su rendimiento y salud.
 
-Dispositivos de red: Además de servidores y máquinas virtuales, Inciga también puede utilizarse para monitorizar dispositivos de red como enrutadores, switches y firewalls, siempre y cuando se puedan instalar agentes o se pueda acceder a ellos a través de SNMP (Simple Network Management Protocol).
+Dispositivos de red: Además de servidores y máquinas virtuales, Icinga también puede utilizarse para monitorizar dispositivos de red como enrutadores, switches y firewalls, siempre y cuando se puedan instalar agentes o se pueda acceder a ellos a través de SNMP (Simple Network Management Protocol).
  ## 2.4  Requisitos tanto de agentes como de máquinas de monitoreo.
- Los requisitos mínimos de hardware y software para Inciga pueden variar dependiendo de la cantidad de recursos que desees monitorear y la escala de tu implementación. Sin embargo, aquí hay una lista general de requisitos mínimos típicos para instalar y ejecutar Inciga:
+ Los requisitos mínimos de hardware y software para Icinga pueden variar dependiendo de la cantidad de recursos que desees monitorear y la escala de tu implementación. Sin embargo, aquí hay una lista general de requisitos mínimos típicos para instalar y ejecutar Icinga:
 
 - Requisitos de hardware:
 
@@ -70,9 +70,9 @@ Dispositivos de red: Además de servidores y máquinas virtuales, Inciga tambié
   - Red: Conexión de red estable y suficiente ancho de banda para enviar y recibir datos de monitoreo.
 - Requisitos de software:
 
-  - Sistema Operativo: Inciga es compatible con una variedad de sistemas operativoAsegúrate de que estás utilizando una versión compatible del sistema operativo.
-  - Java: Inciga requiere Java Runtime Environment (JRE) para ejecutarse. Asegúrese de tener instalada una versión compatible de Java en su sistema.
-  - Base de datos: Inciga utiliza una base de datos para almacenar datos de monitoreo. Puedes usar MySQL, PostgreSQL o Microsoft SQL Server como base de datos backend.
+  - Sistema Operativo: Icinga es compatible con una variedad de sistemas operativoAsegúrate de que estás utilizando una versión compatible del sistema operativo.
+  - Java: Icinga requiere Java Runtime Environment (JRE) para ejecutarse. Asegúrese de tener instalada una versión compatible de Java en su sistema.
+  - Base de datos: Icinga utiliza una base de datos para almacenar datos de monitoreo. Puedes usar MySQL, PostgreSQL o Microsoft SQL Server como base de datos backend.
  ## 2.5  Esquema de Red (entorno). Máquinas, dirección de la red, IP’s, S.O. de las máquinas, servicios instalados. 
 ![esquema](diagrama.png)
 ## 2.6  Instalación y configuración en máquinas a monitorizar.
@@ -116,6 +116,35 @@ Dispositivos de red: Además de servidores y máquinas virtuales, Inciga tambié
 # 3. Instalación y configuración en máquinas a monitorizar (agentes) y remotas.
  ## 3.1  Instalación y configuración en agentes 
  ## 3.2  Diseño de pruebas.  Decisión de servicios a monitorizar
+ Con el software de monitoreo Icinga, puedes realizar una variedad de pruebas y monitorizar varios servicios en tus servidores. Aquí hay algunas pruebas que podrías realizar y servicios que podrías monitorizar en tus servidores MySQL, Apache y la máquina con Icinga:
+
+- Pruebas de ping: Verifica la conectividad básica entre los servidores.
+- Monitorización de recursos del servidor: Monitoriza el uso de CPU, memoria RAM y almacenamiento en disco en ambos servidores.
+- Estado del servicio de MySQL: Verifica que el servicio de MySQL esté en ejecución y responde adecuadamente a las consultas.
+- Estado del servicio de Apache: Verifica que el servicio de Apache esté en ejecución y pueda servir páginas web correctamente.
+- Monitorización del uso de la base de datos: Monitoriza el rendimiento de MySQL, incluido el número de conexiones, la carga de consultas y el uso de recursos.
+- Monitorización de la integridad del sitio web: Realiza pruebas de HTTP para verificar que el sitio web esté accesible y que las páginas se carguen correctamente.
+- Monitorización de logs de errores: Monitoriza los logs de errores de MySQL y Apache en busca de posibles problemas.
+- Monitorización de SSL/TLS: Si tu sitio web utiliza HTTPS, verifica la validez del certificado SSL/TLS y su fecha de caducidad.
+- Monitorización de seguridad: Verifica que no haya vulnerabilidades conocidas en las versiones de MySQL, Apache y otros software instalados en tus servidores.
+En cuanto a los servicios que deberías monitorizar:
+
+Para el servidor de base de datos MySQL:
+
+- Estado del servicio de MySQL.
+- Uso de CPU y memoria.
+- Uso de almacenamiento en disco.
+- Número de conexiones activas.
+- Rendimiento de las consultas.
+  
+Para el servidor web Apache:
+
+- Estado del servicio de Apache.
+- Uso de CPU y memoria.
+- Uso de almacenamiento en disco.
+- Carga del servidor y número de solicitudes.
+- Tiempo de respuesta del servidor web.
+- Códigos de estado HTTP.
  ## 3.3  Puesta en marcha (pruebas) y ejemplo de uso.
 
  # 4  [Otros puntos a investigar según la herramienta]
