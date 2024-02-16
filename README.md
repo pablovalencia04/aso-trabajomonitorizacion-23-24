@@ -260,7 +260,15 @@ Los servicios que se están monitoreando son:
 
 ## I. Equipo y roles
 
+Marcos y Andrés: Development team
+
+Pablo: Scrum Master
+
+M. Carmen: Product manager
+
 ## II. Reuniones realizadas (events)
+
+3 Sprints establecidas del 9/2 al 21/2
 
 ## III. Documentos:
 
