@@ -348,7 +348,9 @@ Los servicios que se están monitoreando son:
 
   Aquí se puede ver como en el periodo en el que estaban apagadas las máquinas se ha registrado que el servicio está caído, apareciendo en un alarmante color rojo.
 * **Tarea programada (si procede) en cron.**
+  Icinga tiene características de programación que hace innecesario el uso de cron para el uso de la aplicación 
 * **Otros usos: proxy, etc**
+  Otro uso de Icinga su integración con LDAP facilita la administración centralizada de usuarios, grupos y otra información de configuración, lo que puede simplificar y mejorar la gestión de la infraestructura de TI en entornos empresariales.
 
 # 5  Conclusiones y problemas encontrados
 
@@ -362,7 +364,7 @@ Los servicios que se están monitoreando son:
 
 ## 6.3  Conclusión tras la comparativa (si lo consideras necesario)
 
-La instalación ha sido bastante complicada con respecto a instalaciones como Zabbix o Nagios. Esto es acachable a que Icinga tiene mayor flexibilidad y capacidad de personalización. La elección entre Zabbix, Nagios e Icinga dependerá de las necesidades específicas de monitoreo y las preferencias de la organización. 
+La instalación ha sido bastante complicada con respecto a instalaciones como Zabbix o Nagios. Esto es acachable a que Icinga tiene mayor flexibilidad y capacidad de personalización. La elección entre Zabbix, Nagios e Icinga dependerá de las necesidades específicas de monitoreo y las preferencias de la organización. Sin embargo, como handicap de esta herrammienta es su alta personalización, la compatabilidad con otras herramientas como Nagios y su comunidad de usuarios y desarrolladores que contribuyen con plugins, complementos y soporte técnico.
 
 # 7  Bibliografía
 
