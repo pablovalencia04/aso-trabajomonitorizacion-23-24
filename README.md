@@ -362,6 +362,8 @@ Los servicios que se están monitoreando son:
 
 ## 6.3  Conclusión tras la comparativa (si lo consideras necesario)
 
+La instalación ha sido bastante complicada con respecto a instalaciones como Zabbix o Nagios. Esto es acachable a que Icinga tiene mayor flexibilidad y capacidad de personalización. La elección entre Zabbix, Nagios e Icinga dependerá de las necesidades específicas de monitoreo y las preferencias de la organización. 
+
 # 7  Bibliografía
 
 * https://icinga.com/docs/icinga-2/latest/doc/02-installation/02-Ubuntu/
