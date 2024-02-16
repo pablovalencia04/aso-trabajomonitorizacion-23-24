@@ -107,41 +107,95 @@ Dispositivos de red: Además de servidores y máquinas virtuales, Icinga tambié
 ### Instalación y Configuración de Icinga en un Servidor Windows
 
 **Preparación del servidor:**
+1. Debemos de icorporar el repositorio con de icinga, para ello en el servidor introducimos el siguiente comando:
+```apt update
+apt -y install apt-transport-https wget gnupg
 
-* **Actualice el sistema operativo:** Asegúrese de tener la última versión de Windows Server instalada.
-* **Instale el paquete de .NET Framework 4.8:** Icinga requiere .NET Framework para funcionar.
-* **Instale el módulo de Windows PowerShell ISE:** Se utiliza para ejecutar scripts de PowerShell para la configuración.
-* **Descargue los archivos de instalación:** Obtenga la última versión de Icinga desde el sitio web oficial: https://icinga.com/get-started/download/
+wget -O - https://packages.icinga.com/icinga.key | gpg --dearmor -o /usr/share/keyrings/icinga-archive-keyring.gpg
 
-**Instalación de Icinga:**
+. /etc/os-release; if [ ! -z ${UBUNTU_CODENAME+x} ]; then DIST="${UBUNTU_CODENAME}"; else DIST="$(lsb_release -c| awk '{print $2}')"; fi; \
+ echo "deb [signed-by=/usr/share/keyrings/icinga-archive-keyring.gpg] https://packages.icinga.com/ubuntu icinga-${DIST} main" > \
+ /etc/apt/sources.list.d/${DIST}-icinga.list
+ echo "deb-src [signed-by=/usr/share/keyrings/icinga-archive-keyring.gpg] https://packages.icinga.com/ubuntu icinga-${DIST} main" >> \
+ /etc/apt/sources.list.d/${DIST}-icinga.list
 
-1. **Ejecute el instalador:** Inicie el archivo `icinga-windows-x64.msi` y siga las instrucciones en pantalla.
-2. **Elija el tipo de instalación:** Seleccione "Servidor Icinga" para una instalación completa con la interfaz web y la base de datos.
-3. **Configure los componentes:** Elija los módulos de Icinga que desea instalar. Se recomienda instalar los módulos básicos como `icinga2`, `icingaweb2` e `ido-mysql`.
-4. **Configure la base de datos:** Seleccione "Usar una base de datos existente" e ingrese la información de su servidor MySQL.
-5. **Complete la instalación:** Siga las instrucciones en pantalla para finalizar la instalación.
+apt update
+```
+Y ahora procedemos con la instalación de icinga2 y los pluggins de monitoreo:
 
-**Configuración de Icinga:**
+```apt install icinga2 monitoring-plugins```
 
-1. **Configure el archivo de configuración principal:** Abra el archivo `icinga2.conf` en un editor de texto como Notepad++.
-2. **Ajuste la configuración general:** Modifique la configuración según sus necesidades, como la zona horaria, el nombre del servidor y la configuración de notificaciones.
-3. **Defina los hosts y servicios a monitorizar:** Cree archivos de configuración para cada host y servicio que desea monitorizar. Utilice la sintaxis de Icinga para definir las comprobaciones y notificaciones.
-4. **Importe la configuración:** Importe los archivos de configuración a Icinga usando el comando `icinga2 feature enable configimport`.
-5. **Inicie el servicio Icinga:** Inicie el servicio `Icinga 2` para que la configuración surta efecto.
+2. Ahora vamos a configurar la API de Icinga, cuando insertermos el comando nos creará un usuario para la api cuyo usuario será root y la contraseña será un conjunto de alfanuméricos:
 
-**Acceso a la interfaz web:**
+```icinga2 api setup```
 
-1. Abra un navegador web e ingrese la dirección URL `https://localhost:5665/icingaweb2/`.
-2. Inicie sesión con el usuario `icingaadmin` y la contraseña que estableció durante la instalación.
-3. La interfaz web le permite ver el estado de sus hosts y servicios, administrar la configuración y crear nuevos monitores.
+Y después reiniciamos Icinga2:
+```systemctl restart icinga2```
 
-**Recursos adicionales:**
+3. Instalación de servidor Redis:
 
-* Documentación oficial de Icinga: https://icinga.com/docs/icinga-2/latest/doc/04-configuration/
-* Tutoriales de Icinga: https://www.youtube.com/watch?v=gmv66GIA0l8
-* Foro de la comunidad de Icinga: https://community.icinga.com
+Icinga hace uso del servicio redis para administrar su base de datos, para instalarlo:
 
+```apt install icingadb-redis```
+
+![alt text](image-1.png)
+
+Luego debemos hacer que el servicio icingadb-redis se inicie automáticamente:
+
+```systemctl enable --now icingadb-redis```
+
+Redis por defecto no permite conexiones remotas, debemos configurar el archivo de configuración de redis /etc/icingadb-redis/icingadb-redis.confy cambiar el bind-ip a 0.0.0.0 y el protected-mode a no, de esta manera no necesitamos una contraseña para iniciar sesión.
+
+4. Habilitamos el modulo Icingadb:
+   
+Cuando instalamos icingadb-redis tambiéninstalamos el servicio de icingadb, debemos habilitarlo:
+
+```icinga2 feature enable icingadb```
+
+y después reiniciarlo:
+
+```systemctl restart icinga2```
+
+5. Instalación de Icingadb:
+   
+Debemos de instalar el paquete de Icingadb:
+
+```apt install icingadb```
+
+6. Configuración de Icingadb:
+
+Para poder usar Icingadb debemos crear un usuario para la base de datos:
+
+```
+CREATE DATABASE icingadb;
+CREATE USER 'icingadb'@'localhost' IDENTIFIED BY 'CHANGEME';
+GRANT ALL ON icingadb.* TO 'icingadb'@'localhost';
+```
+E introducimos el esquema sql que usa la aplicacion para administrar hosts o servicios:
+
+```mysql -u root -p icingadb </usr/share/icingadb/schema/mysql/schema.sql```
+
+Y ahora habilitamos el servicio de Icingadb:
+
+```systemctl enable --now icingadb```
+
+7. Instalación de Icingaweb2:
+   
+Este modulo es el que nos permite administrar todo Icingadb con una intefaz web:
+
+```apt install icingadb-web```
+
+![alt text](image-2.png)
+
+8. Ahora simplemente tendremos que poner la IP de nuestra máquina servidora seguido de /icingaweb2/setup:
+
+```http://18.234.1.143/icingaweb2/setup```
 # 3. Instalación y configuración en máquinas a monitorizar (agentes) y remotas.
+
+Para la instalación de icinga en los agentes debemos hacer lo siguiente:
+
+1. Copia del repositorio de icinga en el cliente:
+
 
 ## 3.1  Instalación y configuración en agentes
 
