@@ -352,7 +352,9 @@ Los servicios que se están monitoreando son:
 
 # 5  Conclusiones y problemas encontrados
 
- Conclusiones tras conocer la herramienta. Indicar también problemas (y cómo se han solventado).
+En conclusión. icinga es una plataforma muy completa y nos permite monitorizar muchisimas cosas de los agentes, debido a que icinga soporta plugins de nagios optiene una gran versatilidad.
+La instalación es cierto que es muy larga y tediosa y muchas veces salen errores sin mucho sentido y hago incapié en los problemas con los esquemas de bases de datos.
+Por lo demas la herramienta funciona muy bien y tiene una gran variedad de usos desde monitorizar un servcio a los recursos de un sistema.
 
 # 6  OPCIONAL --- Comparativa con otras herramientas (trabajo de otro equipo)
 
