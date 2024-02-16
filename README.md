@@ -223,11 +223,18 @@ Los servicios que se están monitoreando son:
 
 # 4  [Otros puntos a investigar según la herramienta]
 
-    • Instalación mediante script en las máquinas de la red a monitorizar.
-    • Monitorización remota por SSH  o en consola.
-    • Monitorización usando el navegador web.Alerta a usuario
-    • Tarea programada (si procede) en cron.
-    • Otros usos: proxy, etc
+* **Instalación mediante script en las máquinas de la red a monitorizar.**
+* **Monitorización remota por SSH  o en consola.**
+* **Monitorización usando el navegador web.Alerta a usuario**
+  Si hubiese un error en alguno de los servicios, el panel mostraría el número de errores, y en vista detallada podríamos ver qué es lo que está fallando.
+
+  ![1708074896856](image/README/1708074896856.png)
+
+  ![1708074918954](image/README/1708074918954.png)
+
+  Aquí se puede ver como en el periodo en el que estaban apagadas las máquinas se ha registrado que el servicio está caído, apareciendo en un alarmante color rojo.
+* **Tarea programada (si procede) en cron.**
+* **Otros usos: proxy, etc**
 
 # 5  Conclusiones y problemas encontrados
 
@@ -243,6 +250,11 @@ Los servicios que se están monitoreando son:
 
 # 7  Bibliografía
 
+* https://icinga.com/docs/icinga-2/latest/doc/02-installation/02-Ubuntu/
+* https://icinga.com/docs/icinga-db/latest/doc/02-Installation/06-Ubuntu/#installing-icinga-db-package
+
+* https://icinga.com/docs/icinga-db-web/latest/doc/02-Installation/Ubuntu/#installing-icinga-db-web-package
+* https://www.ochobitshacenunbyte.com/2018/07/08/icinga-director-un-modulo-imprescindible/
 
 # ANEXO. Desarrollo del proyecto con SCRUM
 
