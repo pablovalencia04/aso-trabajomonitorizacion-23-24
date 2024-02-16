@@ -191,14 +191,74 @@ Este modulo es el que nos permite administrar todo Icingadb con una intefaz web:
 
 ```http://18.234.1.143/icingaweb2/setup```
 # 3. Instalación y configuración en máquinas a monitorizar (agentes) y remotas.
-
+## 3.1  Instalación y configuración en agentes
 Para la instalación de icinga en los agentes debemos hacer lo siguiente:
 
 1. Copia del repositorio de icinga en el cliente:
+```
+apt update
+apt -y install apt-transport-https wget gnupg
 
+wget -O - https://packages.icinga.com/icinga.key | gpg --dearmor -o /usr/share/keyrings/icinga-archive-keyring.gpg
 
-## 3.1  Instalación y configuración en agentes
+. /etc/os-release; if [ ! -z ${UBUNTU_CODENAME+x} ]; then DIST="${UBUNTU_CODENAME}"; else DIST="$(lsb_release -c| awk '{print $2}')"; fi; \
+ echo "deb [signed-by=/usr/share/keyrings/icinga-archive-keyring.gpg] https://packages.icinga.com/ubuntu icinga-${DIST} main" > \
+ /etc/apt/sources.list.d/${DIST}-icinga.list
+ echo "deb-src [signed-by=/usr/share/keyrings/icinga-archive-keyring.gpg] https://packages.icinga.com/ubuntu icinga-${DIST} main" >> \
+ /etc/apt/sources.list.d/${DIST}-icinga.list
 
+apt update
+```
+2. Instalación de Icinga2 en el cliente:
+
+```apt install icinga2```
+
+3. Configuración de Icinga:
+Debemos ejecutar el node wizard de Icinga2 para la configuración del agente:
+
+```[root@icinga2-agent1.localdomain /]# icinga2 node wizard```
+
+Y ahora nos pedirá una serie de datos para la configuración:
+
+Primero nos reconocerá el fqdn de nuestro agente.
+
+```Please specify the common name (CN) [icinga2-agent1.localdomain]: icinga2-agent1.localdomain```
+
+Y el fqdn de nuestro icinga master.
+
+```Master/Satellite Common Name (CN from your master/satellite node): icinga2-master1.localdomain```
+
+Y ahora nos pide la IP del Icinga master:
+```
+Please specify the master/satellite connection information:
+Master/Satellite endpoint host (IP address or FQDN): 192.168.56.101
+Master/Satellite endpoint port [5665]: 5665
+```
+Y nos pedirá que pongamos en ticket para nuestro cliente:
+
+```
+Please specify the request ticket generated on your Icinga 2 master (optional).
+ (Hint: # icinga2 pki ticket --cn 'icinga2-agent1.localdomain'):
+4f75d2ecd253575fe9180938ebff7cbca262f96e
+```
+Y permitimos la ejecucion de comandos y configuración por parte del Icinga master:
+```
+Accept config from parent node? [y/N]: y
+Accept commands from parent node? [y/N]: y
+```
+
+Y ponemos que no queremos especificar zonas nuevas:
+
+```
+Default global zones: global-templates director-global
+Do you want to specify additional global zones? [y/N]: N
+```
+
+Y elegimos que queremos usar el archivo de configuración de los nodos:
+
+```
+Do you want to disable the inclusion of the conf.d directory [Y/n]: n
+```
 ## 3.2  Diseño de pruebas.  Decisión de servicios a monitorizar
 
  Con el software de monitoreo Icinga, puedes realizar una variedad de pruebas y monitorizar varios servicios en tus servidores. Aquí hay algunas pruebas que podrías realizar y servicios que podrías monitorizar en tus servidores MySQL, Apache y la máquina con Icinga:
