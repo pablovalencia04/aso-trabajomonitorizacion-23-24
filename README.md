@@ -339,6 +339,13 @@ Los servicios que se están monitoreando son:
 
 * **Instalación mediante script en las máquinas de la red a monitorizar.**
 * **Monitorización remota por SSH  o en consola.**
+Al ser una EC2 de amazon aws, podemos acceder por ssh a nuestra máquina Icinga por medio del comando ssh.
+Una vez allí podemos administrar por medio de comandos las máquinas agentes que tenemos en agregadas a Icinga:
+![alt text](image-3.png)
+En este caso yo puedo acceder por ssh a la máquina por medio de la consola de AWS, también podemos ejecutar algunos comandos para monitorizar a los agentes, por ejemplo, podemos ejecutar el comando ```icinga2 list enable``` para mostrar los módulos que están habilitados e inhabilitados:
+![alt text](image-4.png)
+O podemos obtener todas las variables que se usan con el comando ```iciniga2 variable list```:
+![alt text](image-5.png)
 * **Monitorización usando el navegador web.Alerta a usuario**
   Si hubiese un error en alguno de los servicios, el panel mostraría el número de errores, y en vista detallada podríamos ver qué es lo que está fallando.
 
